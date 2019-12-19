@@ -27,6 +27,8 @@ var OnLoad = function () {
             .then(data => {
                 console.log(data);
             
+                documentTemperatureSectionSpan.textContent = "F";
+            
                 //Set HTML elements' text
                 const {temperature, summary, icon} = data.currently;
                 
@@ -48,6 +50,9 @@ var OnLoad = function () {
                     }});
             });
         });
+    }
+    else{
+        //TODO: Add code for when the user rejects the request for location
     }
     
     
