@@ -3,10 +3,12 @@ var OnLoad = function () {
     var long;
     var lat;
     
-   
+    let documentTemperatureSection = document.querySelector(".degree-section");
+    let documentTemperatureSectionSpan = document.querySelector(".degree-section span");
     let documentTemperature = document.querySelector(".temperature-degree");
     let documentDescription = document.querySelector(".temperature-description");
     let documentTimezone = document.querySelector(".location-timezone");
+    
     
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => 
@@ -26,13 +28,34 @@ var OnLoad = function () {
                 console.log(data);
             
                 //Set HTML elements' text
-                const {temperature, summary} = data.currently;
+                const {temperature, summary, icon} = data.currently;
                 
                 documentTemperature.textContent = temperature;
                 documentDescription.textContent = summary;
                 documentTimezone.textContent = data.timezone;
+            
+                setIcons(icon, document.getElementById("icon1"));
+            
+                //separate these
+                documentTemperatureSection.addEventListener("click", () => {
+                    if (documentTemperatureSectionSpan.textContent === "F"){
+                        documentTemperatureSectionSpan.textContent = "C";
+                        documentTemperature.textContent = Math.round(((temperature-32)*5/9)*100)/100;
+                    }
+                    else {
+                        documentTemperatureSectionSpan.textContent = "F";
+                        documentTemperature.textContent = temperature;
+                    }});
             });
         });
+    }
+    
+    
+    function setIcons(icon, iconid){
+        const skycons = new Skycons({color: "white"});
+        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconid, Skycons[currentIcon]);
     }
 };
 
