@@ -17,8 +17,8 @@ var OnLoad = function () {
             lat = position.coords.latitude;
         
         
-        //const proxy = "https://cors-anywhere.herokuapp.com/"; //${proxy}
-        const api = `https://api.darksky.net/forecast/1609a5e20c95ed0853ce11176193f49f/${lat},${long}`;
+        const proxy = "https://cors-anywhere.herokuapp.com/"; //
+        const api = `${proxy}https://api.darksky.net/forecast/1609a5e20c95ed0853ce11176193f49f/${lat},${long}`;
         
         fetch(api)
             .then(response => {
@@ -49,10 +49,25 @@ var OnLoad = function () {
                         documentTemperature.textContent = temperature;
                     }});
             });
+        }, error =>{
+           switch(error.code) {
+    case error.PERMISSION_DENIED:
+      documentTemperature.innerHTML = "Geolocation services blocked. :("
+      break;
+    case error.POSITION_UNAVAILABLE:
+      documentTemperature.innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      documentTemperature.innerHTML = "The request to get your location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      documentTemperature.innerHTML = "An unknown error occurred."
+      break;
+  } 
         });
     }
     else{
-        //TODO: Add code for when the user rejects the request for location
+        documentTemperature.textContent = "Geolocation is not available on this browser!";
     }
     
     
