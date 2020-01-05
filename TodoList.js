@@ -4,35 +4,27 @@ var todoItemHolder = document.querySelector("#list-holder");
 
 var todoList = [];
 
-var addItem = function () {
-    var newItem = textEntry.value;
-    
-    if (todoList.includes(newItem) == false && newItem.length >= 1){
-        
-        todoList = todoList.concat([textEntry.value]);
-
-        console.log(todoList);
-
-        drawList();
-    }
-}
-
-var deleteItem = function (indexOfItem) {
-    todoList = todoList.filter(function(x) {return x != todoList[indexOfItem];});
-    
-    console.log(todoList);
-    
-    drawList();
-}
+// Code snippet for localStorage
+var storage = (function () {
+	var uid = new Date;
+	var storage;
+	var result;
+	try {
+		(storage = window.localStorage).setItem(uid, uid);
+		result = storage.getItem(uid) == uid;
+		storage.removeItem(uid);
+		return result && storage;
+	} catch (exception) {}
+}());
 
 var drawList = function () {
-    while (todoItemHolder.childElementCount > 0){
+    //Delete each todo displayed on the page
+    while (todoItemHolder.childElementCount > 0) {
         todoItemHolder.removeChild(todoItemHolder.children.item(0));
     }
     
-
-    
-    for(var i = 0; i<todoList.length; i++){
+    //Add each todo item in our current list to the page
+    for (var i = 0; i<todoList.length; i++){
         
         var newItem = document.createElement("div"+i.toString());
     
@@ -53,4 +45,40 @@ var drawList = function () {
 
         todoItemHolder.appendChild(newItem);
     }
+};
+
+//Adds the text currently in the entry field to the todo list, then updates the display, and saves the list
+var addItem = function () {
+    var newItem = textEntry.value;
+    
+    if (todoList.includes(newItem) === false && newItem.length >= 1) {
+        
+        todoList = todoList.concat([textEntry.value]);
+
+        if (storage){
+            storage.setItem("todo", JSON.stringify(todoList));
+        }
+        
+        drawList();
+    }
+};
+
+//Removes the item at given index from our todoList, then updates the display, and saves the list
+var deleteItem = function (indexOfItem) {
+    todoList = todoList.filter(function(x) {return x != todoList[indexOfItem];});
+    
+    if (storage){
+        storage.setItem("todo", JSON.stringify(todoList));
+    }
+    
+    drawList();
+};
+
+todoList = JSON.parse(storage.getItem("todo"));
+
+if (todoList == null){
+    todoList = []
+}
+else{
+    drawList();
 }
