@@ -21,6 +21,16 @@ body {
     
 }
 
+.navigation-bar {
+    position: absolute;
+    top: 25px;
+    font-size: 22px;
+}
+
+a {
+    text-decoration: none;
+}
+
 .location, .temperature {
     height: 30vh;
     width: 50%;
