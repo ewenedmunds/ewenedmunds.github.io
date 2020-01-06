@@ -19,16 +19,43 @@ body {
     
     text-align: center;
     
+    background-image: url("forestBackground.png");
+    background-position: -15px 625px;
+    background-repeat: repeat-x;
+    background-size: 65% 45%;
+    background-color: rgb(140, 150, 200);
+}
+
+a {
+    text-decoration: none;
+}
+
+#background-image {
+    position: absolute;
+
+    width: 150vw;
+    
+    bottom: -275px;
+    
+    z-index: -100;
+    
+    opacity: 0.2;
+}
+
+#list-header input {
+    height: 30px;
+    margin: 10px;
+}
+
+#list-holder {
+    position: static;
+    height: 100%;
 }
 
 .navigation-bar {
     position: absolute;
     top: 25px;
     font-size: 22px;
-}
-
-a {
-    text-decoration: none;
 }
 
 .location, .temperature {
@@ -53,16 +80,6 @@ a {
 }
 .degree-section h2 {
     font-size: 45px;
-}
-
-#list-header input {
-    height: 30px;
-    margin: 10px;
-}
-
-#list-holder {
-    position: static;
-    height: 100%;
 }
 
 .todo-list-item {
