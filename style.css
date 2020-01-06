@@ -54,3 +54,22 @@ a {
 .degree-section h2 {
     font-size: 45px;
 }
+
+#list-header input {
+    height: 30px;
+    margin: 10px;
+}
+
+#list-holder {
+    position: static;
+    height: 100%;
+}
+
+.todo-list-item {
+    
+    height: 10%;
+
+    margin-top: 20px;
+    margin-bottom: 70px;
+    
+}

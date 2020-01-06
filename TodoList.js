@@ -26,14 +26,14 @@ var drawList = function () {
     //Add each todo item in our current list to the page
     for (var i = 0; i<todoList.length; i++){
         
-        var newItem = document.createElement("div"+i.toString());
+        var newItem = document.createElement("div");
     
         newItem.className = "todo-list-item";
 
-        newItem.innerHTML = todoList[i];
+        newItem.innerHTML = "<p>"+(i+1).toString()+". "+todoList[i]+"</p>";
 
         //Create the button allowing you to remove the item from the list
-        var deleteButton = document.createElement("div"+i.toString());
+        var deleteButton = document.createElement("div");
 
         deleteButton.innerHTML = `
         <form>
