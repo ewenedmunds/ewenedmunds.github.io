@@ -94,3 +94,15 @@ a {
     margin-bottom: 40px;
     
 }
+
+.card-holder div {
+    width: 75px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.card-holder img {
+    width: 60px;
+    height: 95px;
+}
