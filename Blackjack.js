@@ -12,6 +12,7 @@ var cards = [];
 var playerHand = [];
 var dealerHand = [];
 
+//Sets initial values for deck
 var initialiseGame = function () {
     var cards = [];
     
@@ -27,19 +28,18 @@ var initialiseGame = function () {
     return cards;
 };
 
+//Sets initial hands, changes interactable buttons
 var startGame = function () {
     playerHand = [];
     dealerHand = [];
     
     cards = initialiseGame();
     
-    playerHand = dealCard(playerHand, cards);
+    playerHand = dealCard(playerHand);
+    playerHand = dealCard(playerHand);
     
-    playerHand = dealCard(playerHand, cards);
-    
-    dealerHand = dealCard(dealerHand, cards);
-
-    dealerHand = dealCard(dealerHand, cards);
+    dealerHand = dealCard(dealerHand);
+    dealerHand = dealCard(dealerHand);
 
     
     drawCards(playerHand, dealerHand);
@@ -51,6 +51,7 @@ var startGame = function () {
     statusText.innerHTML = "";
 };
 
+//Returns the best possible (i.e. ideally non-bust) value of a given hand of cards
 var value = function (hand) {
     var val = 0;
     var noAces = 0;
@@ -72,8 +73,9 @@ var value = function (hand) {
     return val;
 }
 
+//Adds a card to the player's hand, then checks whether the player has gone bust
 var hit = function () {
-    playerHand = dealCard(playerHand, cards);
+    playerHand = dealCard(playerHand);
 
     
     drawCards(playerHand, dealerHand);
@@ -100,9 +102,9 @@ var playerStick = function () {
     stickButton.disabled = true;
     newGameButton.disabled = false;
     
+    //Behaviour for dealer: must hit under sixteen, otherwise will only hit if the player has a higher score
     while (value(dealerHand) < 16 || value(dealerHand) < value(playerHand)){
-        dealerHand = dealCard(dealerHand, cards);
-
+        dealerHand = dealCard(dealerHand);
     }
     
     drawCards(playerHand, dealerHand, true);
@@ -110,6 +112,7 @@ var playerStick = function () {
     var dValue = value(dealerHand);
     var pValue = value(playerHand);
     
+    //Goes through each possible ending state for the game
     if (pValue == 21 && playerHand.length == 2 && !(dValue == 21 && dealerHand.length == 2)){
         statusText.innerHTML = "Blackjack! You win!";
     }
@@ -130,7 +133,8 @@ var playerStick = function () {
     }
 }
 
-var dealCard = function (handTo, cardsasd) {
+//Picks a random card from the deck, removing it from the cards list, returning an array representing the hand passed in with that card added
+var dealCard = function (handTo) {
     var card = cards[Math.floor(Math.random()*cards.length)];
     
     console.log(card);
@@ -142,7 +146,7 @@ var dealCard = function (handTo, cardsasd) {
     return handTo.concat([card]);
 }
 
-
+//Draws the card graphics to the screen, hiding the first dealer card if revealCard is set to false
 var drawCards = function (playerHand, dealerHand, revealCard=false) {
     while (cardHolder.childElementCount > 0){
         cardHolder.removeChild(cardHolder.children.item(0));
