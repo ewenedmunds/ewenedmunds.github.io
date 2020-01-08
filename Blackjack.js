@@ -33,21 +33,14 @@ var startGame = function () {
     
     cards = initialiseGame();
     
-    result = dealCard(playerHand, cards);
-    playerHand = result[0];
-    cards = result[1];
+    playerHand = dealCard(playerHand, cards);
     
-    result = dealCard(playerHand, cards);
-    playerHand = result[0];
-    cards = result[1];
+    playerHand = dealCard(playerHand, cards);
     
-    result = dealCard(dealerHand, cards);
-    dealerHand = result[0];
-    cards = result[1];
-    
-    result = dealCard(dealerHand, cards);
-    dealerHand = result[0];
-    cards = result[1];
+    dealerHand = dealCard(dealerHand, cards);
+
+    dealerHand = dealCard(dealerHand, cards);
+
     
     drawCards(playerHand, dealerHand);
     
@@ -80,10 +73,8 @@ var value = function (hand) {
 }
 
 var hit = function () {
-    result = dealCard(playerHand, cards);
-    console.log(result);
-    playerHand = result[0];
-    cards = result[1];
+    playerHand = dealCard(playerHand, cards);
+
     
     drawCards(playerHand, dealerHand);
     
@@ -110,9 +101,8 @@ var playerStick = function () {
     newGameButton.disabled = false;
     
     while (value(dealerHand) < 16 || value(dealerHand) < value(playerHand)){
-        result = dealCard(dealerHand, cards);
-        dealerHand = result[0];
-        cards = result[1];
+        dealerHand = dealCard(dealerHand, cards);
+
     }
     
     drawCards(playerHand, dealerHand, true);
@@ -140,7 +130,7 @@ var playerStick = function () {
     }
 }
 
-var dealCard = function (handTo, cards) {
+var dealCard = function (handTo, cardsasd) {
     var card = cards[Math.floor(Math.random()*cards.length)];
     
     console.log(card);
@@ -149,9 +139,7 @@ var dealCard = function (handTo, cards) {
     
     console.log(cards);
     
-    handTo = handTo.concat([card]);
-    
-    return [handTo, cards];
+    return handTo.concat([card]);
 }
 
 
