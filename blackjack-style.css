@@ -12,13 +12,10 @@ body {
     
     align-items: center;
     
-
-    
     font-family: fantasy;
     color: white;
     
     text-align: center;
-    
     
     background-position: -15px 625px;
     background-repeat: repeat-x;
@@ -42,16 +39,6 @@ a {
     opacity: 0.2;
 }
 
-#list-header input {
-    height: 30px;
-    margin: 10px;
-}
-
-#list-holder {
-    position: static;
-    height: 250px;
-}
-
 .navigation-bar {
     position: absolute;
     top: 0px;
@@ -62,35 +49,14 @@ a {
     padding: 10px;
 }
 
-.location, .temperature {
-    height: 30vh;
-    width: 50%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.temperature {
-    flex-direction: column;
+.card-holder div {
+    width: 75px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
 }
 
-.degree-section {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.degree-section span {
-    font-size: 30px;
-    padding: 10px;
-}
-.degree-section h2 {
-    font-size: 45px;
-}
-
-.todo-list-item {
-    
-    height: 10%;
-
-    margin-top: 20px;
-    margin-bottom: 40px;
-    
+.card-holder img {
+    width: 60px;
+    height: 95px;
 }
