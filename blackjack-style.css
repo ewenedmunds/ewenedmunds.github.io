@@ -13,6 +13,8 @@ body {
     align-items: center;
     
     font-family: fantasy;
+    font-size: 25px;
+    
     color: white;
     
     text-align: center;
@@ -39,6 +41,14 @@ a {
     opacity: 0.2;
 }
 
+#game-holder {
+    height: 50%;
+}
+
+#game-status {
+    height: 10%;
+}
+
 .navigation-bar {
     position: absolute;
     top: 0px;
@@ -59,4 +69,16 @@ a {
 .card-holder img {
     width: 60px;
     height: 95px;
+}
+
+form {
+    height: 50px;
+}
+
+form input[type=button]{
+    width: 100px;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    font-size: 25px;
+    cursor: pointer;
 }
